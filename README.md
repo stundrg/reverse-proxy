@@ -21,7 +21,7 @@ $ sudo service nginx restart
 $ sudo service nginx stop
 $ sudo service nginx start
 $ sudo service nginx status #-> worker 16ea
-$ sudo nginx -t 
+$ sudo nginx -t # syntax check
 ```
 
 ## nGrinder
