@@ -22,7 +22,14 @@ $ sudo service nginx stop
 $ sudo service nginx start
 $ sudo service nginx status #-> worker 16ea
 $ sudo nginx -t 
+
+# scale out
+$ sudo docker compose up -d --scale web1=4
 ```
+
+```bash
+$ sudo docker exet -it <LB_NAME> bash
+$ nginx -s reload
 
 ## nGrinder
 > $ java -jar ngrinder-controller-3.5.9-p1.war # 컨트롤러 실행 방법
