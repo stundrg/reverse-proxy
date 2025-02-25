@@ -27,15 +27,26 @@ $ sudo nginx -t
 $ sudo docker compose up -d --scale web1=4
 ```
 
+## nginx
+
 ```bash
+$ sudo docker exec -it <LB_NAME> bash
+$ nginx -s reload
+```
+
+## FastAPI
+- https://fastapi.tiangolo.com/ko/#typer-fastapi-cli
+```bash
+$ fastapi main.py
 $ sudo docker exet -it <LB_NAME> bash
 $ nginx -s reload
 
 ## nGrinder
 > $ java -jar ngrinder-controller-3.5.9-p1.war # 컨트롤러 실행 방법
 > $ ./run_agent.sh # Agent 실행 방법
-
 - http://localhost:8000 (admin/admin)
+```
+
 ```bash
 $ pwd
 /home/wsl/app

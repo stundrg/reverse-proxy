@@ -1,6 +1,7 @@
 from typing import Union
-
 from fastapi import FastAPI
+import random
+import time
 
 app = FastAPI()
 
@@ -41,20 +42,43 @@ def two_dimensional_array():
 
 @app.get("/add-large-arrays")
 def add_large_arrays():
-    N = 10**6  # 100만 개 요소
+    N = 10**6  
 
-    # 랜덤한 1차원 배열 2개 생성
+    # 랜덤한 1차원 리스트 2개 생성
+    a = [random.random() for _ in range(N)]
+    b = [random.random() for _ in range(N)]
 
-    # 실행 시간 측정 시작
     start_time = time.time()
     
-    # 요소별 덧셈
+    # for 루프를 이용한 요소별 덧셈
+    result = []
+    for i in range(N):
+        result.append(a[i] + b[i])
 
-    # 실행 시간 측정 종료
     end_time = time.time()
     
-    # 수행 시간 리턴
     return {"execution_time": end_time - start_time}
+
+@app.get("/add-large-arrays_choice")
+def add_large_arrays_choice():
+    N = 10**6  
+    start_creation_time = time.time()
+    # 랜덤한 1차원 리스트 2개 생성
+    a = [random.choice(range(0, 100)) for _ in range(N)]
+    b = [random.choice(range(0, 100)) for _ in range(N)]
+
+    add_start_time = time.time()
+    
+    # for 루프를 이용한 요소별 덧셈
+    result = []
+    for i in range(N):
+        result.append(a[i] + b[i])
+
+    add_end_time = time.time()
+    end_creation_time = time.time()
+    return {
+        "execution_time": add_end_time - add_start_time,
+        "array_creation_time": end_creation_time - start_creation_time}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
