@@ -37,12 +37,11 @@ services:
       - VIRTUAL_PORT=80
     volumes:
       - ./main.py:/code/main.py
-
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: "0.95" 
-    #       memory: "500M"  
+    deploy:
+     resources:
+          limits:
+            cpus: "2.0"
+            memory: "1G"
   cache:
     image: nginx
     ports:
